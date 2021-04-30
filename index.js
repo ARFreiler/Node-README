@@ -58,6 +58,12 @@ inquirer.prompt(
         },
         {
             type: 'input',
+            message: 'What is the author\'s GitHub username?',
+            name: 'GitHub',
+            validate: (value) => { if (value) { return true } else { return 'I need a value to continue.' } },
+        },
+        {
+            type: 'input',
             message: 'How can the author be contacted?',
             name: 'Email',
             validate: (value) => { if (value) { return true } else { return 'I need a value to continue.' } },
@@ -68,28 +74,28 @@ inquirer.prompt(
     response
 ) => {
     const template = `# ${response.Title}
-
+## Description
+${response.Description}    
+## Table of Contents
 * [Installation](#installation)
 * [Usage](#usage)
 * [contribution](#contribution)
 * [Credits](#credits)
 * [License](#license)
-# Installation
+## Installation
 ${response.Installation}
 ## Usage
 ${response.Usage}
-## Contribution
+## Contributors
 ${response.Contributors}
-### Instructions
-${response.Instructions}
 ## Credits
 ${response.Credits}
 ## License
 ${response.License}
         
-# Contact
-* GitHub :${response.git}
-* Email :${response.Email}`;
+## Contact the Author
+GitHub: ${response.git}\r\n
+Email: ${response.Email}`;
     createNewFile(response.Title, template);
 });
 
