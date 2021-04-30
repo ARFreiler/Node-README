@@ -46,6 +46,12 @@ inquirer.prompt(
         },
         {
             type: 'input',
+            message: 'To whom does credit need to be assigned for this project?',
+            name: 'Credits',
+            validate: (value) => { if (value) { return true } else { return 'I need a value to continue.' } },
+        },
+        {
+            type: 'input',
             message: 'Are there any contributors to your app?',
             name: 'Contributors',
             validate: (value) => { if (value) { return true } else { return 'I need a value to continue.' } },
@@ -79,7 +85,7 @@ ${response.Description}
 ## Table of Contents
 * [Installation](#installation)
 * [Usage](#usage)
-* [contribution](#contribution)
+* [Contributors](#contributors)
 * [Credits](#credits)
 * [License](#license)
 ## Installation
@@ -93,8 +99,8 @@ ${response.Credits}
 ## License
 ${response.License}
         
-## Contact the Author
-GitHub: ${response.git}\r\n
+## Questions
+GitHub: ${response.GitHub}\r\n
 Email: ${response.Email}`;
     createNewFile(response.Title, template);
 });
